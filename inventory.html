@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 5%
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: black;
+  padding: 10px;
+  height: 500px;
+  width: 100%;
+  overflow: scroll;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;    
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+  <a href="linus.html" class="active">Home</a>
+  <a href="about.html">About Me</a>
+  <a href="contact.html">Contact Me</a>
+  
+  
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<!-- MAIN (Center website) -->
+<div class="main">
+
+
+<hr>
+
+<h1>Inventory system code</h1>
+
+<!-- Portfolio Gallery Grid -->
+
+<hr>
+<div class="content">
+  <p style="color: white;">Imports System.Data.SqlClient <br>
+Imports System.Drawing.Printing <br>
+Imports System<br><br>
+Public Class home<br>
+
+    Dim conn As SqlConnection = New SqlConnection("Data Source="server name";Initial Catalog="database name";Integrated Security=True")<br>
+    
+    Private Sub Executequery(query As String)<br>
+        Dim comnd As New SqlCommand(query, conn)<br>
+        conn.Open()<br>
+        comnd.ExecuteNonQuery()<br>
+        conn.Close()<br>
+
+    End Sub<br><br>
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Btnprofile.Click<br>
+        pnlProfile.Visible = True<br>
+        pnlusers.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Btnusers_Click(sender As Object, e As EventArgs) Handles Btnusers.Click<br>
+        pnlusers.Visible = True<br>
+        pnlProfile.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Btneditprofile_Click_1(sender As Object, e As EventArgs)<br>
+        c_profile.Show()<br>
+    End Sub<br><br>
+
+    Private Sub btnregisterusers_Click_1(sender As Object, e As EventArgs)<br>
+        Customers.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Btncustomer_Click(sender As Object, e As EventArgs)<br>
+        pnlusers.Visible = True<br>
+        pnlProfile.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+    End Sub<br><br>
+
+    Private Sub btnregisterusers_Click(sender As Object, e As EventArgs)<br>
+        Users.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs)<br>
+        Customers.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Btncustomer_Click_1(sender As Object, e As EventArgs) Handles Btncustomer.Click<br>
+        PnlCustomers.Visible = True<br>
+        pnlProfile.Visible = False<br>
+        pnlusers.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs)<br>
+        Vendor.Show()<br>
+    End Sub<br><br>
+
+    Private Sub btnvendor_Click(sender As Object, e As EventArgs) Handles btnvendor.Click<br>
+        pnlvendor.Visible = True<br>
+        PnlCustomers.Visible = False<br>
+        pnlProfile.Visible = False<br>
+        pnlusers.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs)<br>
+        Stock.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Btnstock_Click(sender As Object, e As EventArgs) Handles Btnstock.Click<br>
+        pnlstock.Visible = True<br>
+        pnlvendor.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlProfile.Visible = False<br>
+        pnlusers.Visible = False<br>
+        pnlproduct.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Button9_Click_1(sender As Object, e As EventArgs)<br>
+        Product.Show()<br>
+    End Sub<br><br>
+
+    Private Sub productbtn_Click(sender As Object, e As EventArgs) Handles productbtn.Click<br>
+        pnlproduct.Visible = True<br>
+        pnlstock.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlProfile.Visible = False<br>
+        pnlusers.Visible = False<br>
+        Pnlsales.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+   
+    Private Sub salesbtn_Click(sender As Object, e As EventArgs) Handles salesbtn.Click<br>
+        Pnlsales.Visible = True<br>
+        pnlproduct.Visible = False<br>
+        pnlstock.Visible = False<br>
+        pnlvendor.Visible = False<br>
+        PnlCustomers.Visible = False<br>
+        pnlProfile.Visible = False<br>
+        pnlusers.Visible = False<br>
+
+        
+    End Sub<br><br>
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs)<br>
+        c_profile.Show()<br>
+    End Sub<br>
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click<br>
+        c_profile.Show()<br>
+    End Sub<br>
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs)<br>
+        pnlProfile.Show()<br>
+    End Sub<br>
+
+    Private Sub home_Load(sender As Object, e As EventArgs) Handles MyBase.Load<br>
+        'TODO: This line of code loads data into the 'Usedmaterialsprosoya.usedmaterials' table. You can move, or remove it, as needed.<br>
+        Me.UsedmaterialsTableAdapter1.Fill(Me.Usedmaterialsprosoya.usedmaterials)<br>
+        'TODO: This line of code loads data into the 'Materialsnew.materials' table. You can move, or remove it, as needed.<br>
+        Me.MaterialsTableAdapter4.Fill(Me.Materialsnew.materials)<br>
+        'TODO: This line of code loads data into the 'CUSTOMERSALE.Sales' table. You can move, or remove it, as needed.<br>
+        Me.SalesTableAdapter2.Fill(Me.CUSTOMERSALE.Sales)<br>
+        'datagridviewcheck<br>
+        Try<br>
+            Dim dgvcheck As New DataGridViewCheckBoxColumn()<br>
+            dgvcheck.HeaderText = "ReleasedBy"<br>
+            dgvcheck.HeaderText = "ConfirmedBy"<br>
+            DataGridViewcheck.Columns.Add(dgvcheck)<br>
+            txtuseer.Text = flogin.user<br>
+        Catch ex As Exception<br>
+
+        End Try<br><br>
+
+       
+
+        'TODO: This line of code loads data into the 'Prochech.products' table. You can move, or remove it, as needed.<br>
+        Me.ProductsTableAdapter1.Fill(Me.Prochech.products)<br>
+        'TODO: This line of code loads data into the 'Nowtotals.totalmaterialkgs' table. You can move, or remove it, as needed.<br>
+        Me.TotalmaterialkgsTableAdapter2.Fill(Me.Nowtotals.totalmaterialkgs)<br>
+        
+        
+        
+        'TODO: This line of code loads data into the 'CustomerDataSet12.Customers' table. You can move, or remove it, as needed.<br>
+        Me.CustomersTableAdapter3.Fill(Me.CustomerDataSet12.Customers)<br>
+        'TODO: This line of code loads data into the 'Myvendors.Vendor' table. You can move, or remove it, as needed.<br>
+        Me.VendorTableAdapter1.Fill(Me.Myvendors.Vendor)<br>
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet11.Sales' table. You can move, or remove it, as needed.<br>
+        
+        Me.CustomersTableAdapter2.Fill(Me.ProsoyaDatabaseDataSet8.Customers)<br>
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet7.Customers' table. You can move, or remove it, as needed.<br>
+        Me.CustomersTableAdapter1.Fill(Me.ProsoyaDatabaseDataSet7.Customers)<br>
+        
+       
+        
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet3.Vendor' table. You can move, or remove it, as needed.<br>
+        Me.VendorTableAdapter.Fill(Me.ProsoyaDatabaseDataSet3.Vendor)<br>
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet2.Customers' table. You can move, or remove it, as needed.<br>
+        Me.CustomersTableAdapter.Fill(Me.ProsoyaDatabaseDataSet2.Customers)<br>
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet1.users' table. You can move, or remove it, as needed.<br>
+        Me.UsersTableAdapter.Fill(Me.ProsoyaDatabaseDataSet1.users)<br>
+        'TODO: This line of code loads data into the 'ProsoyaDatabaseDataSet.profile' table. You can move, or remove it, as needed.<br>
+        Me.ProfileTableAdapter.Fill(Me.ProsoyaDatabaseDataSet.profile)<br>
+
+    End Sub<br><br>
+    Public a As String<br>
+    Public b As String<br>
+    Private Sub Button15_Click_1(sender As Object, e As EventArgs)<br>
+        Users.Show()<br>
+    End Sub<br>
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click<br>
+        Users.Show()<br>
+    End Sub<br>
+    Private Sub Btnlogout_Click(sender As Object, e As EventArgs) Handles Btnlogout.Click<br>
+        Dim iexit As DialogResult<br>
+        Try<br>
+            iexit = MessageBox.Show("Confirm logout", "to the program", MessageBoxButtons.YesNo, MessageBoxIcon.Question)<br>
+            If iexit = DialogResult.Yes Then<br>
+                Application.Exit()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click<br>
+        a = lbphone.Text<br>
+        b = lbemail.Text<br>
+        Customers.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click<br>
+        Vendor.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button13_Click_1(sender As Object, e As EventArgs) Handles Button13.Click<br>
+        Stock.Show()<br>
+    End Sub<br><br>
+
+    
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click<br>
+        dasplay()<br>
+    End Sub<br><br>
+    Dim str As String<br>
+    Public Sub dasplay()<br>
+        Try<br>
+            str = ("select * from users ")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "users")<br>
+            DataGridViewusers.DataSource = ds.Tables("users")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    
+
+    Public Sub dasplayprofile()<br>
+        Try<br>
+            str = ("select * from profile ")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "profile")<br>
+            DataGridViewprofile.DataSource = ds.Tables("profile")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    Public Sub dasplaycustomer()<br>
+        Try<br>
+            str = ("select * from Customers ")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "Customers")<br>
+            DataGridViewcustomer.DataSource = ds.Tables("Customers")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click<br>
+        dasplayprofile()<br>
+    End Sub<br>
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click<br>
+        userstatus.Show()<br>
+    End Sub<br>
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click<br>
+        customerupdate.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click<br>
+        dasplaycustomer()<br>
+    End Sub<br><br>
+
+    Public Sub dasplayvendor()<br>
+        Try<br>
+            str = ("select * from Vendor ")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "Vendor")<br>
+            DataGridViewvendor.DataSource = ds.Tables("Vendor")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Public Sub dasplaytot()<br>
+        Try<br>
+            str = ("select * from totalmaterialkgs")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "totalmaterialkgs")<br>
+            DataGridViewtot.DataSource = ds.Tables("totalmaterialkgs")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Public Sub dasplaymaterial()<br>
+        Try<br>
+            str = ("select * from materials")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "materials")<br>
+            DataGridViewmaterial.DataSource = ds.Tables("materials")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Public Sub dasplayusedmaterial()<br>
+        Try<br>
+            str = ("select * from usedmaterials")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "usedmaterials")<br>
+            DataGridViewused.DataSource = ds.Tables("usedmaterials")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click<br>
+        dasplayvendor()<br>
+    End Sub<br><br>
+
+    Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click<br>
+        vendorupdate.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click<br>
+        Try<br>
+            If removeid.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM Customers WHERE Id = " & removeid.Text & ""<br>
+                Executequery(deletequery)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplaycustomer()<br>
+                removeid.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub Button24_Click(sender As Object, e As EventArgs) Handles Button24.Click<br>
+        Try<br>
+            If removevendor.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM Vendor WHERE ID = " & removevendor.Text & ""<br>
+                Executequery(deletequery)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplayvendor()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click<br>
+        Try<br>
+            If removematerial.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM materials WHERE materialID = " & removematerial.Text & ""<br>
+                Executequery(deletequery)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplayvendor()<br>
+                removematerial.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+    End Sub<br>
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click<br>
+        dasplaymaterial()<br>
+        dasplayusedmaterial()<br>
+        dasplaytot()<br>
+        RECKG.Clear()<br>
+        RECBAG.Clear()<br>
+        TextBoxfinal.Clear()<br>
+        TextBofinal.Clear()<br>
+        iiid.Clear()<br>
+        finkgs.Clear()<br>
+        finbag.Clear()<br>
+        tot.Clear()<br>
+        bags.Clear()<br>
+    End Sub<br><br>
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click<br>
+        registermaterials.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button11_Click_1(sender As Object, e As EventArgs) Handles Button11.Click<br>
+        materialupdate.Show()<br>
+    End Sub<br><br>
+
+    Private Sub Button25_Click(sender As Object, e As EventArgs) Handles Button25.Click<br>
+        Try<br>
+            If TextBoxrem.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM usedmaterials WHERE ID = " & TextBoxrem.Text & ""<br>
+                Executequery(deletequery)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplayvendor()<br>
+                TextBoxrem.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Public Sub pnlstock_Paint(sender As Object, e As PaintEventArgs) Handles pnlstock.Paint<br>
+        Try<br>
+            
+            TextBoxfinal.Text = Val(finkgs.Text) + Val(RECKG.Text)<br>
+            TextBofinal.Text = Val(finbag.Text) + Val(RECBAG.Text)<br>
+            If Val(finkgs.Text) = Nothing Then<br>
+
+            
+            ElseIf Val(finkgs.Text) > 10 Then<br>
+                Tekg.Text = Val(finkgs.Text) - Val(tot.Text)<br>
+                Tebag.Text = Val(finbag.Text) - Val(bags.Text)<br>
+            ElseIf Val(finkgs.Text) < 10 Then<br>
+                MsgBox("The selected material is currently running out of stock", MsgBoxStyle.Critical)<br>
+                finkgs.Clear()<br>
+                finbag.Clear()<br>
+            End If<br>
+           
+        Catch ex As Exception<br>
+
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click<br>
+        Try<br>
+            Dim updatequery As String = ("UPDATE totalmaterialkgs SET Totalkgs ='" & TextBoxfinal.Text & "', Totalbags='" & TextBofinal.Text & "' WHERE No=" & iiid.Text & "")<br>
+            Executequery(updatequery)<br>
+            MsgBox("update sucessful", MsgBoxStyle.Information)<br>
+            dasplaytot()<br>
+            RECKG.Clear()<br>
+            RECBAG.Clear()<br>
+            TextBoxfinal.Clear()<br>
+            TextBofinal.Clear()<br>
+            iiid.Clear()<br>
+            finkgs.Clear()<br>
+            finbag.Clear()<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            RECKG.Clear()<br>
+            RECBAG.Clear()<br>
+            TextBoxfinal.Clear()<br>
+            TextBofinal.Clear()<br>
+            iiid.Clear()<br>
+            finkgs.Clear()<br>
+            finbag.Clear()<br>
+        End Try
+<br>
+    End Sub<br><br>
+
+
+    Private Sub Button27_Click(sender As Object, e As EventArgs) Handles Button27.Click<br>
+        Try<br>
+            If Tekg.Text = Nothing Or Tebag.Text = Nothing Or Teid.Text = Nothing Then<br>
+                MsgBox("Empty field", MsgBoxStyle.Exclamation)<br>
+            ElseIf Val(Tekg.Text) > 100 Then<br>
+
+                Dim updatequery As String = ("UPDATE totalmaterialkgs SET Totalkgs ='" & Tekg.Text & "', Totalbags='" & Tebag.Text & "' WHERE No=" & Teid.Text & "")<br>
+               
+                Executequery(updatequery)<br>
+                MsgBox("update sucessful", MsgBoxStyle.Information)<br>
+                dasplaytot()<br>
+                tot.Clear()<br>
+                bags.Clear()<br>
+                Tekg.Clear()<br>
+                Tebag.Clear()<br>
+                Teid.Clear()<br>
+                finkgs.Clear()<br>
+                finbag.Clear()<br>
+            ElseIf Val(Tekg.Text) < 100 Then<br>
+                MsgBox("You are running out of stock", MsgBoxStyle.Exclamation)<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            RECKG.Clear()<br>
+            RECBAG.Clear()<br>
+            TextBoxfinal.Clear()<br>
+            TextBofinal.Clear()<br>
+            iiid.Clear()<br>
+            finkgs.Clear()<br>
+            finbag.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxcolor.SelectedIndexChanged<br>
+        Try<br>
+            If ComboBoxcolor.SelectedItem = "LightSkyBlue" Then<br>
+                pnlproduct.BackColor = Color.LightSkyBlue<br>
+                pnlProfile.BackColor = Color.LightSkyBlue<br>
+                Pnlsales.BackColor = Color.LightSkyBlue<br>
+                pnlusers.BackColor = Color.LightSkyBlue<br>
+                pnlvendor.BackColor = Color.LightSkyBlue<br>
+                PnlCustomers.BackColor = Color.LightSkyBlue<br>
+                pnlstock.BackColor = Color.LightSkyBlue<br>
+            ElseIf ComboBoxcolor.SelectedItem = "light" Then<br>
+                pnlproduct.BackColor = Color.LightGray<br>
+                pnlProfile.BackColor = Color.LightGray<br>
+                Pnlsales.BackColor = Color.LightGray<br>
+                pnlusers.BackColor = Color.LightGray<br>
+                pnlvendor.BackColor = Color.LightGray<br>
+                PnlCustomers.BackColor = Color.LightGray<br>
+                pnlstock.BackColor = Color.LightGray<br>
+            ElseIf ComboBoxcolor.SelectedItem = "YellowGreen" Then<br>
+                pnlproduct.BackColor = Color.YellowGreen<br>
+                pnlProfile.BackColor = Color.YellowGreen<br>
+                Pnlsales.BackColor = Color.YellowGreen<br>
+                pnlusers.BackColor = Color.YellowGreen<br>
+                pnlvendor.BackColor = Color.YellowGreen<br>
+                PnlCustomers.BackColor = Color.YellowGreen<br>
+                pnlstock.BackColor = Color.YellowGreen<br>
+
+            End If<br>
+        Catch ex As Exception<br>
+
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click<br>
+        productregistration.Show()<br>
+    End Sub<br><br>
+    Public Sub dasplayPRODCTS()<br>
+        Try<br>
+            str = ("select * from products")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "products")<br>
+            DataGridViewcheck.DataSource = ds.Tables("products")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    Private Sub Button15_Click_2(sender As Object, e As EventArgs) Handles Button15.Click<br>
+        dasplayPRODCTS()<br>
+
+    End Sub<br><br>
+
+   
+    Private Sub DataGridViewtot_cellclick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewtot.CellClick<br>
+        Dim index As Integer<br>
+        index = e.RowIndex<br>
+        Dim selectedrow As DataGridViewRow<br>
+        selectedrow = DataGridViewtot.Rows(index)<br>
+        finkgs.Text = selectedrow.Cells(1).Value.ToString()<br>
+        finbag.Text = selectedrow.Cells(2).Value.ToString()<br>
+
+    End Sub<br><br>
+
+    Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click<br>
+        Product.Show()<br>
+    End Sub<br><br>
+
+    Private Sub DataGridViewsales_cellclick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewsales.CellClick<br>
+        Try<br>
+            Dim index As Integer<br>
+            index = e.RowIndex<br>
+            Dim selectedrow As DataGridViewRow<br>
+            selectedrow = DataGridViewsales.Rows(index)<br>
+            calckg.Text = selectedrow.Cells(3).Value.ToString()<br>
+            calcbag.Text = selectedrow.Cells(4).Value.ToString()<br>
+
+            saleno.Text = selectedrow.Cells(7).Value.ToString()<br>
+            salenoption.Text = selectedrow.Cells(7).Value.ToString()<br>
+            txtsaleno.Text = selectedrow.Cells(7).Value.ToString()<br>
+            
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub Pnlsales_Paint(sender As Object, e As PaintEventArgs) Handles Pnlsales.Paint<br>
+        Try<br>
+            calctotal.Text = Val(calckg.Text) * Val(calcbag.Text)<br>
+            totalcash.Text = Val(calctotal.Text) * Val(calprice.Text)<br>
+            If Val(TXTPRODUCTKG.Text) = Nothing Then<br>
+
+            ElseIf Val(TXTPRODUCTKG.Text) > 10 Then<br>
+                RESULTSKG.Text = Val(TXTPRODUCTKG.Text) - Val(KGHS.Text)<br>
+                RESULTSBAG.Text = Val(TXTPRODUCTBAGS.Text) - Val(BANGSS.Text)<br>
+            ElseIf Val(TXTPRODUCTKG.Text) < 10 Then<br>
+                MsgBox("Sorry, action terminated. you don't have enough products", MsgBoxStyle.Exclamation)<br>
+
+                TXTPRODUCTKG.Clear()<br>
+                TXTPRODUCTBAGS.Clear()<br>
+            End If<br>
+
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+
+    End Sub<br><br>
+    Public Sub dasplaysales()<br>
+        Try<br>
+            str = ("select * from Sales")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "Sales")<br>
+            DataGridViewsales.DataSource = ds.Tables("Sales")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click<br>
+        Try<br>
+            If calctotal.Text = Nothing Or totalcash.Text = Nothing Or saleno.Text = Nothing Then<br>
+                MsgBox("invalid data", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim updatequery As String = ("UPDATE Sales SET Total =" & calctotal.Text & " ,UnitPrice =" & totalcash.Text & " ,PurchaseDate ='" & Datetodat.Text & "' WHERE SaleNo =" & saleno.Text & "")<br>
+                Executequery(updatequery)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                dasplaysales()<br>
+                saleno.Clear()<br>
+                calckg.Clear()<br>
+                calcbag.Clear()<br>
+                calctotal.Clear()<br>
+                totalcash.Clear()<br>
+                calprice.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            MsgBox(ex.Message)<br>
+            saleno.Clear()<br>
+            calckg.Clear()<br>
+            calcbag.Clear()<br>
+            calctotal.Clear()<br>
+            totalcash.Clear()<br>
+            calprice.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click<br>
+        dasplaysales()<br>
+        dasplaypdo()<br>
+        dasplayplo()<br>
+    End Sub<br><br>
+
+    Private Sub DataGridViewCUSTOMERSS_cellclick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCUSTOMERSS.CellClick<br>
+        Try<br>
+            Dim index As Integer<br>
+            index = e.RowIndex<br>
+            Dim selectedrow As DataGridViewRow<br>
+            selectedrow = DataGridViewCUSTOMERSS.Rows(index)<br>
+
+            NAMEC.Text = selectedrow.Cells(0).Value.ToString()<br>
+            IDC.Text = selectedrow.Cells(1).Value.ToString()<br>
+        Catch ex As Exception<br>
+
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click<br>
+        Try<br>
+            If NAMEC.Text = Nothing Or IDC.Text = Nothing Then<br>
+                MsgBox("invalid data", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim insertquery As String = "INSERT INTO Sales (CustomerName,Id) VALUES ('" & NAMEC.Text & "' ," & IDC.Text & ")"<br>
+                Executequery(insertquery)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                dasplaypdo()<br>
+                dasplaysales()<br>
+                NAMEC.Clear()<br>
+                IDC.Clear()<br>
+                Me.Show()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            NAMEC.Clear()<br>
+            IDC.Clear()<br>
+        End Try<br>
+
+    End Sub<br><br>
+    Public Sub dasplaypdo()<br>
+        Try<br>
+            str = ("select * from Customers")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "Customers")<br>
+            DataGridViewCUSTOMERSS.DataSource = ds.Tables("Customers")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Public Sub dasplayplo()<br>
+        Try<br>
+            str = ("select * from products")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "products")<br>
+            DataGridViewPRODUCTS.DataSource = ds.Tables("products")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub DataGridViewPRODUCTS_CELLCLICK(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewPRODUCTS.CellClick<br>
+        Try<br>
+            Dim index As Integer<br>
+            index = e.RowIndex<br>
+            Dim selectedrow As DataGridViewRow<br>
+            selectedrow = DataGridViewPRODUCTS.Rows(index)<br>
+
+            TXTPRODUCTNAME.Text = selectedrow.Cells(0).Value.ToString()<br>
+            TXTPRODUCTTYPE.Text = selectedrow.Cells(1).Value.ToString()<br>
+            TXTPRODUCTKG.Text = selectedrow.Cells(2).Value.ToString()<br>
+            TXTPRODUCTBAGS.Text = selectedrow.Cells(3).Value.ToString()<br>
+            TXTPRODUCTNO.Text = selectedrow.Cells(4).Value.ToString()<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+    End Sub<br>
+<br>
+    Private Sub Button29_Click(sender As Object, e As EventArgs) Handles Button29.Click<br>
+        Try<br>
+            If TXTPRODUCTNAME.Text = Nothing Or TXTPRODUCTTYPE.Text = Nothing Or KGHS.Text = Nothing Or BANGSS.Text = Nothing Or TXTPRODUCTNO.Text = Nothing Or salenoption.Text = Nothing Then<br>
+                MsgBox("invalid data", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim insertquery As String = ("UPDATE Sales SET ProductName='" & TXTPRODUCTNAME.Text & "' ,ProductType='" & TXTPRODUCTTYPE.Text & "',ProductNo=" & TXTPRODUCTNO.Text & " ,QuantityKgs=" & KGHS.Text & " ,QuantityBags=" & BANGSS.Text & " WHERE SaleNo=" & salenoption.Text & "")<br>
+                Executequery(insertquery)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                dasplaysales()<br>
+                dasplayplo()<br>
+                TXTPRODUCTNAME.Clear()<br>
+                TXTPRODUCTTYPE.Clear()<br>
+                TXTPRODUCTKG.Clear()<br>
+                TXTPRODUCTBAGS.Clear()<br>
+                TXTPRODUCTNO.Clear()<br>
+                KGHS.Clear()<br>
+                BANGSS.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            TXTPRODUCTNAME.Clear()<br>
+            TXTPRODUCTTYPE.Clear()<br>
+            TXTPRODUCTKG.Clear()<br>
+            TXTPRODUCTBAGS.Clear()<br>
+            TXTPRODUCTNO.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    
+    Private Sub Button30_Click(sender As Object, e As EventArgs) Handles Button30.Click<br>
+        Try
+            If RESULTSKG.Text = Nothing Or RESULTSBAG.Text = Nothing Or TXTPRODUCTNO.Text = Nothing Then<br>
+                MsgBox("invalid data", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim updatequerys As String = ("UPDATE products SET Quantitykgs =" & RESULTSKG.Text & " ,quantitybags =" & RESULTSBAG.Text & " WHERE ProductNo =" & TXTPRODUCTNO.Text & "")<br>
+                Executequery(updatequerys)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                dasplayplo()<br>
+                RESULTSKG.Clear()<br>
+                RESULTSBAG.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub DataGridViewused_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewused.CellClick<br>
+        Dim index As Integer<br>
+        index = e.RowIndex<br>
+        Dim selectedrow As DataGridViewRow<br>
+        selectedrow = DataGridViewused.Rows(index)<br>
+        tot.Text = selectedrow.Cells(2).Value.ToString()<br>
+        bags.Text = selectedrow.Cells(3).Value.ToString()<br>
+        Teid.Text = selectedrow.Cells(1).Value.ToString()<br>
+    End Sub<br><br>
+
+    Private Sub DataGridViewmaterial_CELLCLICK(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewmaterial.CellClick<br>
+        Dim index As Integer<br>
+        index = e.RowIndex<br>
+        Dim selectedrow As DataGridViewRow<br>
+        selectedrow = DataGridViewmaterial.Rows(index)<br>
+        RECKG.Text = selectedrow.Cells(1).Value.ToString()<br>
+        RECBAG.Text = selectedrow.Cells(2).Value.ToString()<br>
+        iiid.Text = selectedrow.Cells(3).Value.ToString()<br>
+
+    End Sub<br><br>
+
+    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click<br>
+        Try<br>
+            If iiid.Text = Nothing Or TextBoxfinal.Text = Nothing Or TextBofinal.Text = Nothing Then<br>
+                MsgBox("Empty field", MsgBoxStyle.Information)<br>
+            Else<br>
+                Dim insertquery As String = "INSERT INTO totalmaterialkgs (No,Totalkgs,Totalbags) VALUES (" & iiid.Text & ",'" & TextBoxfinal.Text & "', '" & <br>TextBofinal.Text & "')"<br>
+                Executequery(insertquery)<br>
+                MsgBox("sucessful", MsgBoxStyle.Information)<br>
+                dasplaytot()<br>
+                RECKG.Clear()<br>
+                RECBAG.Clear()<br>
+                TextBoxfinal.Clear()<br>
+                TextBofinal.Clear()<br>
+                iiid.Clear()<br>
+                finkgs.Clear()<br>
+                finbag.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical)<br>
+            RECKG.Clear()<br>
+            RECBAG.Clear()<br>
+            TextBoxfinal.Clear()<br>
+            TextBofinal.Clear()<br>
+            iiid.Clear()<br>
+            finkgs.Clear()<br>
+            finbag.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button31_Click(sender As Object, e As EventArgs) Handles Button31.Click<br>
+        Try<br>
+            If txtsaleno.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM Sales WHERE SaleNo = " & txtsaleno.Text & ""<br>
+                Executequery(deletequery)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplaysales()<br>
+                txtsaleno.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button32_Click(sender As Object, e As EventArgs) Handles Button32.Click<br>
+        Try<br>
+            If DataGridViewsales.SelectedRows.Count = Nothing Then<br>
+                MsgBox("please select subject to print", MsgBoxStyle.Information)<br>
+            ElseIf DataGridViewsales.SelectedRows.Count > 0 Then<br>
+                Dim f As New checkpreview<br>
+                f.txtname.Text = DataGridViewsales.CurrentRow.Cells(0).Value.ToString()<br>
+                f.txttype.Text = DataGridViewsales.CurrentRow.Cells(1).Value.ToString()<br>
+                f.txtnum.Text = DataGridViewsales.CurrentRow.Cells(2).Value.ToString()<br>
+                f.txtkg.Text = DataGridViewsales.CurrentRow.Cells(3).Value.ToString()<br>
+                f.txtbag.Text = DataGridViewsales.CurrentRow.Cells(4).Value.ToString()<br>
+                f.txttotal.Text = DataGridViewsales.CurrentRow.Cells(5).Value.ToString()<br>
+                f.txtprice.Text = DataGridViewsales.CurrentRow.Cells(6).Value.ToString()<br>
+                f.txtsalenum.Text = DataGridViewsales.CurrentRow.Cells(7).Value.ToString()<br>
+                f.txtdate.Text = DataGridViewsales.CurrentRow.Cells(8).Value.ToString()<br>
+                f.txtcusname.Text = DataGridViewsales.CurrentRow.Cells(9).Value.ToString()<br>
+                f.txtcusid.Text = DataGridViewsales.CurrentRow.Cells(10).Value.ToString()<br>
+                f.ShowDialog()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("Failed")<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+
+
+    End Sub<br><br>
+
+    Private Sub Button33_Click(sender As Object, e As EventArgs) Handles Button33.Click<br>
+        Try<br>
+            PrintDocument1.Print()<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+
+    End Sub<br><br>
+    Private bitmap As Bitmap<br>
+    Private Sub Button34_Click(sender As Object, e As EventArgs) Handles Button34.Click<br>
+        Try<br>
+            Dim heit As Integer = DataGridViewcheck.Height<br>
+            DataGridViewcheck.Height = DataGridViewcheck.RowCount * DataGridViewcheck.RowTemplate.Height<br>
+            bitmap = New Bitmap(Me.DataGridViewcheck.Width, Me.DataGridViewcheck.Height)<br>
+            DataGridViewcheck.DrawToBitmap(bitmap, New Rectangle(0, 0, Me.DataGridViewcheck.Width, Me.DataGridViewcheck.Height))<br>
+            PrintPreviewDialog1.Document = PrintDocument1<br>
+            PrintPreviewDialog1.PrintPreviewControl.Zoom = 1<br>
+            PrintPreviewDialog1.ShowDialog()<br>
+            DataGridViewcheck.Height = heit<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+   
+
+    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage<br>
+
+        Try<br>
+            e.Graphics.DrawString("TRANSFER NOTES", New Font("Arial", 12, FontStyle.Bold), Brushes.Black, New Point(600, 20))<br>
+            e.Graphics.DrawString(vbNewLine + lbname.Text + vbNewLine + Labelpobox.Text + vbNewLine + lblocation.Text + vbNewLine + lbemail.Text + vbNewLine + lbphone.Text, New Font("Arial", 12, FontStyle.Bold), Brushes.Black, New Point(200, 30))<br>
+
+            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------------------------------------------", New Font("Arial", 12, FontStyle.Regular), Brushes.Black, New Point(0, 150))<br>
+
+            e.Graphics.DrawImage(bitmap, 0, 180)<br>
+            Dim prt As RectangleF = e.PageSettings.PrintableArea<br>
+            If Me.DataGridViewcheck.Height - DataGridViewcheck.Height > 0 Then<br>
+                e.HasMorePages = True<br>
+            End If<br>
+            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------------------------------------------", New Font("Arial", 12, FontStyle.Regular), Brushes.Black, New Point(0, 1000))<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+
+   
+  
+    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click<br>
+        Try<br>
+            Dim heit As Integer = DataGridViewtot.Height<br>
+            DataGridViewtot.Height = DataGridViewtot.RowCount * DataGridViewtot.RowTemplate.Height<br>
+            bitmap = New Bitmap(Me.DataGridViewtot.Width, Me.DataGridViewtot.Height)<br>
+            DataGridViewtot.DrawToBitmap(bitmap, New Rectangle(0, 0, Me.DataGridViewtot.Width, Me.DataGridViewtot.Height))<br>
+            PrintPreviewDialog2.Document = PrintDocument2<br>
+            PrintPreviewDialog2.PrintPreviewControl.Zoom = 1<br>
+            PrintPreviewDialog2.ShowDialog()<br>
+            DataGridViewtot.Height = heit<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub PrintDocument2_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument2.PrintPage<br>
+        Try<br>
+            e.Graphics.DrawString("TRANSFER NOTES", New Font("Arial", 12, FontStyle.Bold), Brushes.Black, New Point(600, 20))<br>
+            e.Graphics.DrawString(vbNewLine + lbname.Text + vbNewLine + Labelpobox.Text + vbNewLine + lblocation.Text + vbNewLine + lbemail.Text + vbNewLine + lbphone.Text, New Font("Arial", 12, FontStyle.Bold), Brushes.Black, New Point(200, 30))<br>
+
+            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------------------------------------------", New Font("Arial", 12, FontStyle.Regular), Brushes.Black, New Point(0, 150))<br>
+
+            e.Graphics.DrawImage(bitmap, 0, 180)<br>
+            Dim prt As RectangleF = e.PageSettings.PrintableArea<br>
+            If Me.DataGridViewtot.Height - DataGridViewtot.Height > 0 Then<br>
+                e.HasMorePages = True<br>
+            End If<br>
+            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------------------------------------------------------", New Font("Arial", 12, FontStyle.Regular), Brushes.Black, New Point(0, 1000))<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button35_Click(sender As Object, e As EventArgs) Handles Button35.Click<br>
+        Try<br>
+            PrintDocument2.Print()<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    
+    Private Sub DataGridViewcustomer_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewcustomer.CellContentClick<br>
+        Try<br>
+            Dim index As Integer<br>
+            index = e.RowIndex<br>
+            Dim selectedrow As DataGridViewRow<br>
+            selectedrow = DataGridViewcustomer.Rows(index)<br>
+            removeid.Text = selectedrow.Cells(1).Value.ToString()<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click<br>
+        Me.WindowState = FormWindowState.Minimized<br>
+    End Sub<br><br>
+
+    Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click<br>
+        If Me.WindowState = FormWindowState.Maximized Then<br>
+            Me.WindowState = FormWindowState.Normal<br>
+        Else<br>
+            Me.WindowState = FormWindowState.Maximized<br>
+        End If<br>
+
+    End Sub<br><br>
+
+    Private Sub Button37_Click(sender As Object, e As EventArgs) Handles Button37.Click<br>
+        Me.Close()<br>
+        flogin.Close()<br>
+        programloader.Close()<br>
+    End Sub<br><br>
+End Class</p>
+  
+</div>	<br><hr><br>
+ 
+<a href="#"><button style="background-color: blue;font-size: 15px;"><h3>Back To Top</h3></button></a>
+<!-- END MAIN --><br><br><div >&copy; 2019</div>
+</div>
+
+</body>
+</html>

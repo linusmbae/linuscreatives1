@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 5%
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: black;
+  padding: 10px;
+  height: 600px;
+  width: 100%;
+  overflow: scroll;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;    
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+  <a href="linus.html" class="active">Home</a>
+  <a href="about.html">About Me</a>
+  <a href="contact.html">Contact Me</a>
+  
+  
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<!-- MAIN (Center website) -->
+<div class="main">
+
+
+<hr>
+
+
+<h1>Supermarket system code</h1>
+
+<!-- Portfolio Gallery Grid -->
+<hr>
+
+<div class="content">
+  <p style="color: white;">Imports System.Data.SqlClient <br>
+Imports System.Drawing.Printing <br>
+Imports System<br><br>
+Public Class home<br>
+
+    Dim conn As SqlConnection = New SqlConnection("Data Source="server name";Initial Catalog="database";Integrated Security=True")<br>
+    
+    Private Sub Executequery(query As String)<br>
+        Dim comnd As New SqlCommand(query, conn)<br>
+        conn.Open()<br>
+        comnd.ExecuteNonQuery()<br>
+        conn.Close()<br>
+
+    End Sub<br><br>
+
+    Private Sub Label2_TextChanged(sender As Object, e As EventArgs) Handles Label2.TextChanged<br>
+        Try<br>
+            If Label2.Text = Nothing Then<br>
+
+            Else<br>
+                Dim comnd As New SqlCommand("select * from Cashier where UserName=@un", conn)<br>
+                comnd.Parameters.Add("@un", SqlDbType.VarChar).Value = Label2.Text<br>
+                Dim adapta As New SqlDataAdapter(comnd)<br>
+                Dim table As New DataTable()<br>
+                adapta.Fill(table)<br>
+
+                Dim img() As Byte<br>
+                img = table.Rows(0)(9)<br>
+                Dim ms As New MemoryStream(img)<br>
+                PictureBox1.Image = Image.FromStream(ms)<br>
+            End If<br>
+        Catch ex As Exception<br>
+
+        End Try<br>
+    End Sub<br>
+
+    Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click<br>
+        Hide()<br>
+        Show()<br>
+    End Sub<br>
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click<br>
+        Try<br>
+            conn.Open()<br>
+            Dim comn = New SqlCommand("select from Bill", conn)<br>
+            comn.Connection = conn<br>
+            Dim maxid As Object<br>
+            Dim strid As String<br>
+            Dim intid As Integer<br>
+
+            comn.CommandText = "select Max(BillNo) as maxid from Bill"<br>
+            maxid = comn.ExecuteScalar<br>
+            If maxid Is DBNull.Value Then<br>
+                intid = 1<br>
+            Else<br>
+                strid = CType(maxid, String)<br>
+                intid = CType(strid, String)<br>
+                intid = intid + 1<br>
+                Button16.Enabled = False<br>
+                Button6.Enabled = False<br>
+            End If<br>
+            txtbillno.Text = intid<br>
+            conn.Close()<br>
+        Catch ex As Exception<br>
+
+        End Try<br>
+    End Sub<br>
+
+    Private Sub txtproductid_TextChanged(sender As Object, e As EventArgs) Handles txtproductid.TextChanged<br>
+        Try<br>
+            If txtproductid.Text = Nothing Then
+<br>
+            Else<br>
+                Dim comnd As New SqlCommand("select * from Product where ProductID=@id", conn)<br>
+                comnd.Parameters.Add("@id", SqlDbType.Int).Value = txtproductid.Text<br>
+                Dim adapta As New SqlDataAdapter(comnd)<br>
+                Dim table As New DataTable()<br>
+                adapta.Fill(table)<br>
+                txtproductname.Text = table.Rows(0)(1).ToString()<br>
+                tavailable.Text = table.Rows(0)(2).ToString()<br>
+                txtprice.Text = table.Rows(0)(3).ToString()<br>
+                Dim scanner As New MessagingToolkit.Barcode.BarcodeDecoder<br>
+                Dim result As MessagingToolkit.Barcode.Result<br>
+                Try<br>
+                    result = scanner.Decode(New Bitmap(PictureBox2.Image))<br>
+                    MsgBox(result.Text)<br>
+                Catch ex As Exception<br>
+
+                End Try<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("Product Id does not exist", MsgBoxStyle.Exclamation)<br>
+        End Try<br>
+    End Sub<br><br>
+    Public Sub Executequery(query As String)<br>
+        Dim comnd As New SqlCommand(query, conn)<br>
+        conn.Open()<br>
+        comnd.ExecuteNonQuery()<br>
+        conn.Close()<br>
+
+    End Sub<br><br>
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click<br>
+        Try<br>
+            If txtcashierid.Text = Nothing Or txtbillno.Text = Nothing Or txtproductid.Text = Nothing Or txtproductname.Text = Nothing Or txtprice.Text = Nothing Or txtquantity.Text = Nothing Or discount.Text = Nothing Then<br>
+                MsgBox("Empty field", MsgBoxStyle.Exclamation)<br>
+            ElseIf Val(tavailable.Text) < 100 Then<br>
+                MsgBox("You're Running out of stock", MsgBoxStyle.Critical)<br>
+                txtproductid.Clear()<br>
+                txtproductname.Clear()<br>
+                txtprice.Clear()<br>
+                tavailable.Clear()<br>
+                txtquantity.Clear()<br>
+                discount.Clear()<br>
+                txtotal.Clear()<br>
+                totals.Clear()<br>
+            Else<br>
+
+                Dim answer, discoun As Double<br>
+                discoun = Val(discount.Text) / 100 * Val(txtprice.Text) * Val(txtquantity.Text)<br>
+                answer = Val(txtquantity.Text) * Val(txtprice.Text)<br>
+                txtotal.Text = answer - discoun<br>
+                totals.Text = Val(tavailable.Text) - Val(txtquantity.Text)<br>
+
+
+                Dim insertquery As String = "INSERT INTO calcbill(BillNo,ProductID ,ProductName,Quantity,Discount,Price,Total)VALUES ('" & txtbillno.Text & "','" & txtproductid.Text & "','" & txtproductname.Text & "','" & txtquantity.Text & "','" & discount.Text & "','" & txtprice.Text & "','" & txtotal.Text & "')"<br>
+                Executequery(insertquery)<br>
+                Dim insertquery1 As String = "INSERT INTO Bill(BillNo,ProductID ,CashierID,Name,Price,Quantity,Discount,Total)VALUES ('" & txtbillno.Text & "','" & txtproductid.Text & "','" & txtcashierid.Text & "','" & txtproductname.Text & "','" & txtprice.Text & "','" & txtquantity.Text & "','" & discount.Text & "','" & txtotal.Text & "')"<br>
+                Executequery(insertquery1)<br>
+                Dim updatequery As String = ("UPDATE Product SET Quantity='" & totals.Text & "' ,UpdateDate ='" & lbldate.Text & "' where ProductID = " & txtproductid.Text & "")<br>
+                Executequery(updatequery)<br>
+                MsgBox("successful", MsgBoxStyle.Information)<br>
+
+
+                txtproductid.Clear()<br>
+                txtproductname.Clear()<br>
+                txtprice.Clear()<br>
+                tavailable.Clear()<br>
+                txtquantity.Clear()<br>
+                discount.Clear()<br>
+                txtotal.Clear()<br>
+                totals.Clear()<br>
+                adminPanel.dasplayproduct()<br>
+                dasplaycalcbill()<br>
+
+
+
+                'sum of datagrid<br>
+                Dim sum As Decimal = 0<br>
+                For i = 0 To DataGridsell.Rows.Count() - 1<br>
+                    sum += DataGridsell.Rows(i).Cells(5).Value<br>
+                Next<br>
+                TextBoxtotal.Text = sum<br>
+            End If<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex, "failed", MsgBoxStyle.Information)<br>
+        End Try<br>
+    End Sub<br>
+    'returns values in calcbill database<br>
+    Public Sub dasplaycalcbill()<br>
+        Try<br>
+            Dim str = ("select * from calcbill ")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "calcbill")<br>
+            DataGridsell.DataSource = ds.Tables("calcbill")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click<br>
+        Try<br>
+            If txtbillno.Text = Nothing Then<br>
+                'do nothing<br>
+            Else<br>
+                Dim updatequery As String = ("UPDATE Bill SET AmountPaid='" & TextBoxpaid.Text & "', Balance='" & TextBoxbal.Text & "',Date ='" & lbldate.Text & "' where BillNo = " & txtbillno.Text & "")<br>
+                Executequery(updatequery)
+<br>
+                Dim deletequery As String = "DELETE FROM calcbill WHERE BillNo = " & txtbillno.Text & ""<br>
+                Executequery(deletequery)<br>
+                dasplaycalcbill()<br>
+                txtbillno.Clear()<br>
+                txtproductid.Clear()<br>
+                txtproductname.Clear()<br>
+                txtprice.Clear()<br>
+                tavailable.Clear()<br>
+                txtquantity.Clear()<br>
+                discount.Clear()<br>
+                txtotal.Clear()<br>
+                TextBoxtotal.Clear()<br>
+                Button16.Enabled = True<br>
+                Button6.Enabled = True<br>
+            End If<br>
+
+        Catch ex As Exception<br>
+
+        End Try<br>
+    End Sub<br>
+<br>
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click<br>
+        Try<br>
+            Dim writer As TextWriter = New StreamWriter("C:\Powerstar\sale.xlsx")<br>
+            For i As Integer = 0 To DataGridsell.Rows.Count - 2 Step +1<br>
+                For j As Integer = 0 To DataGridsell.Columns.Count - 1 Step +1<br>
+                    writer.Write(vbTab & DataGridsell.Rows(i).Cells(j).Value.ToString() & vbTab & "|")<br>
+                Next<br>
+                writer.WriteLine("")<br>
+                writer.WriteLine("---------------------------")<br>
+            Next<br>
+            writer.Close()<br>
+            MsgBox("data exported to C:\Powerstar\sale.xlsx")<br>
+        Catch ex As Exception<br>
+            MsgBox(ex)<br>
+        End Try<br>
+    End Sub<br><br>
+
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click<br>
+        Try<br>
+
+
+           
+            Dim reader As SqlDataReader<br>
+            conn.Open()<br>
+            Dim query As String = "select * from calcbill"<br>
+            Dim cmd As New SqlCommand(query, conn)<br>
+            reader = cmd.ExecuteReader<br>
+            While reader.Read<br>
+                Dim pname = reader("ProductName")<br>
+                Dim quantity = reader("Quantity")<br>
+                Dim discount = reader("Discount")<br>
+                Dim price = reader("Price")<br>
+                preview.ListView1.Items.Add(pname)<br>
+                preview.ListView1.Items.Add(quantity)<br>
+                preview.ListView1.Items.Add(discount)<br>
+                preview.ListView1.Items.Add(price)<br>
+
+
+            End While<br>
+
+            conn.Close()<br>
+
+
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        Finally<br>
+            Beep()<br>
+        End Try<br>
+        preview.Show()<br>
+    End Sub<br><br>
+
+    
+    Private Sub txtcashierid_TextChanged(sender As Object, e As EventArgs) Handles txtcashierid.TextChanged<br>
+        Try
+<br>
+            If txtcashierid.Text = Nothing Then<br>
+            Else<br>
+                Dim comn As New SqlCommand("select * from Cashier where CashierID=@ids", conn)<br>
+                comn.Parameters.Add("@ids", SqlDbType.Int).Value = txtcashierid.Text<br>
+                Dim adapt As New SqlDataAdapter(comn)<br>
+                Dim tabl As New DataTable()<br>
+                adapt.Fill(tabl)<br>
+                lblname.Text = tabl.Rows(0)(1).ToString()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("Cashier Id does not exist", MsgBoxStyle.Exclamation)<br>
+            txtcashierid.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button38_Click(sender As Object, e As EventArgs) Handles Button38.Click<br>
+        Me.WindowState = FormWindowState.Minimized<br>
+    End Sub<br><br>
+
+    Private Sub Button39_Click(sender As Object, e As EventArgs) Handles Button39.Click<br>
+        If Me.WindowState = FormWindowState.Maximized Then<br>
+            Me.WindowState = FormWindowState.Normal<br>
+        Else<br>
+            Me.WindowState = FormWindowState.Maximized<br>
+        End If<br>
+
+    End Sub<br><br>
+
+    Private Sub Button37_Click(sender As Object, e As EventArgs) Handles Button37.Click<br>
+        Me.Close()<br>
+        flogin.Close()<br>
+        programloader.Close()<br>
+    End Sub<br><br>
+End Class</p>
+  
+</div>	<br><hr><br>
+ 
+<a href="#"><button style="background-color: blue;font-size: 15px;"><h3>Back To Top</h3></button></a>
+<!-- END MAIN --><br><br><div >&copy; 2019</div>
+</div>
+
+</body>
+</html>

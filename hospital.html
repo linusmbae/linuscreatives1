@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 5%
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+}
+
+/* Clear floats after rows */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: black;
+  padding: 10px;
+  height: 600px;
+  width: 100%;
+  overflow: scroll;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;    
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+  <a href="linus.html" class="active">Home</a>
+  <a href="about.html">About Me</a>
+  <a href="contact.html">Contact Me</a>
+  
+  
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<!-- MAIN (Center website) -->
+<div class="main">
+
+
+<hr>
+
+
+<h1>Hospital system code</h1>
+
+<!-- Portfolio Gallery Grid -->
+<hr>
+
+<div class="content">
+  <p style="color: white;">Imports System.Data.SqlClient <br><br>
+Public Class patient<br><br>
+    Dim conn As SqlConnection = New SqlConnection("Data Source="server name";Initial Catalog="database";Integrated Security=True")<br>
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click<br>
+        regpatient.Show()<br>
+    End Sub<br><br>
+
+    Private Sub patient_Load(sender As Object, e As EventArgs) Handles MyBase.Load<br>
+        'TODO: This line of code loads data into the 'LabDatabaseDataSet2.PatientsInfo' table. You can move, or remove it, as needed.<br>
+        Me.PatientsInfoTableAdapter.Fill(Me.LabDatabaseDataSet2.PatientsInfo)<br>
+        Timer1.Enabled = True<br>
+    End Sub<br><br>
+    Public Sub Executequery(query As String)<br>
+        Dim comnd As New SqlCommand(query, conn)<br>
+        conn.Open()<br>
+        comnd.ExecuteNonQuery()<br>
+        conn.Close()<br>
+
+    End Sub<br><br>
+    Private Sub DataGridViewpatient_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewpatient.CellClick<br>
+        Try<br>
+            Dim index As Integer<br>
+            index = e.RowIndex<br>
+            Dim selectedrow As DataGridViewRow<br>
+            selectedrow = DataGridViewpatient.Rows(index)<br>
+            txtid.Text = selectedrow.Cells(0).Value.ToString()<br>
+            fname.Text = selectedrow.Cells(1).Value.ToString()<br>
+            tel.Text = selectedrow.Cells(6).Value.ToString()<br>
+            sname.Text = selectedrow.Cells(2).Value.ToString()<br>
+            srname.Text = selectedrow.Cells(3).Value.ToString()<br>
+            gender.Text = selectedrow.Cells(4).Value.ToString()<br>
+            age.Text = selectedrow.Cells(5).Value.ToString()<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+    End Sub<br><br>
+    Public Sub dasplaypatients()<br>
+        Try<br>
+            Dim str As String = ("select * from PatientsInfo")<br>
+            conn.Open()<br>
+            Dim search As New SqlDataAdapter(str, conn)<br>
+            Dim ds As DataSet = New DataSet()<br>
+            search.Fill(ds, "PatientsInfo")<br>
+            DataGridViewpatient.DataSource = ds.Tables("PatientsInfo")<br>
+            conn.Close()<br>
+
+        Catch ex As Exception<br>
+
+            conn.Close()<br>
+        End Try<br>
+    End Sub<br><br>
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click<br>
+        Try<br>
+            If txtid.Text = Nothing Then<br>
+                MsgBox("Please enter field", MsgBoxStyle.Exclamation)<br>
+            Else<br>
+                Dim deletequery As String = "DELETE FROM PatientsInfo WHERE ID = " & txtid.Text & ""<br>
+                Executequery(deletequery)<br>
+                Dim deletequer As String = "DELETE FROM Results WHERE PatientID = " & idnumb.Text & ""<br>
+                Executequery(deletequer)<br>
+                MsgBox("delete success", MsgBoxStyle.Information)<br>
+                dasplaypatients()<br>
+                txtid.Clear()<br>
+                fname.Clear()<br>
+                sname.Clear()<br>
+                srname.Clear()<br>
+                age.Clear()<br>
+                tel.Clear()<br>
+                idnumb.Clear()<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("delete failed", MsgBoxStyle.Critical)<br>
+            txtid.Clear()<br>
+            fname.Clear()<br>
+            sname.Clear()<br>
+            srname.Clear()<br>
+            age.Clear()<br>
+            tel.Clear()<br>
+            idnumb.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click<br>
+        dasplaypatients()<br>
+    End Sub<br><br>
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click<br>
+        Try<br>
+            Dim updatequery As String = ("UPDATE PatientsInfo SET FirstName ='" & fname.Text & "' ,SecondName ='" & sname.Text & "' ,SurName ='" & srname.Text & "' ,Gender ='" & gender.SelectedItem & "' ,Age =" & age.Text & " ,Phone =" & tel.Text & " ,date ='" & dated.Text & "' WHERE ID =" & txtid.Text & "")<br>
+            Executequery(updatequery)<br>
+            Dim updatequer As String = ("UPDATE Results SET FirstName ='" & fname.Text & "' ,SurName ='" & srname.Text & "'  WHERE PatientID =" & idnumb.Text & "")<br>
+            Executequery(updatequer)<br>
+            MsgBox("sucessful", MsgBoxStyle.Information)<br>
+            dasplaypatients()<br>
+            txtid.Clear()<br>
+            fname.Clear()<br>
+            sname.Clear()<br>
+            srname.Clear()<br>
+            age.Clear()<br>
+            tel.Clear()<br>
+            idnumb.Clear()<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Information)<br>
+            MsgBox(ex.Message)<br>
+            txtid.Clear()<br>
+            fname.Clear()<br>
+            sname.Clear()<br>
+            srname.Clear()<br>
+            age.Clear()<br>
+            tel.Clear()<br>
+            idnumb.Clear()<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick<br>
+        dated.Text = Date.Now.ToString("yyyy-MM-dd")<br>
+    End Sub<br>
+<br>
+    
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click<br>
+        Try<br>
+            Dim bimi, bmi_calc, calc_m As Double<br>
+            calc_m = Val(heigh.Text) / 10<br>
+            bmi_calc = Val(weight.Text) / calc_m<br>
+            bimi = bmi_calc / calc_m<br>
+            If Val(systolic.Text) = Nothing Or Val(diastolic.Text) = Nothing Then<br>
+
+            ElseIf Val(systolic.Text) <= 120 Or Val(diastolic.Text) <= 80 Then<br>
+                bp.Text = " normal"<br>
+            ElseIf Val(systolic.Text) >= 120 And Val(systolic.Text) <= 130 Or Val(diastolic.Text) < 80 Then<br>
+                bp.Text = " elevated"<br>
+            ElseIf Val(systolic.Text) >= 130 And Val(systolic.Text) <= 140 Or Val(diastolic.Text) >= 80 And Val(diastolic.Text) <= 90 Then<br>
+                bp.Text = " hypertension stage 1"<br>
+            ElseIf Val(systolic.Text) >= 140 And Val(systolic.Text) <= 180 Or Val(diastolic.Text) >= 90 And Val(diastolic.Text) <= 120 Then<br>
+                bp.Text = " hypertension stage 2"<br>
+            Else<br>
+                bp.Text = " critical"<br>
+            End If<br>
+            If bimi < 18.5 Then<br>
+
+                bmi.Text = " Underweight"<br>
+            ElseIf bimi >= 18.5 And bimi <= 24.99 Then<br>
+                bmi.Text = (" Normal")<br>
+            ElseIf bimi >= 25.0 And bimi <= 29.99 Then<br>
+                bmi.Text = (" overweight")<br>
+            Else<br>
+                bmi.Text = " obese"<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click<br>
+        Try<br>
+            If diastolic.Text = Nothing Or systolic.Text = Nothing Or heigh.Text = Nothing Or weight.Text = Nothing Or bmi.Text = Nothing Or bp.Text = Nothing Then<br>
+                MsgBox("Empty field", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim Updatequery As String = ("UPDATE Results SET Diastole=" & diastolic.Text & " ,Systole=" & systolic.Text & " ,Height=" & heigh.Text & " ,Weight= " & weight.Text & ",BMI='" & bmi.Text & "',BP='" & bp.Text & "' WHERE PatientID='" & PatientID.Text & "'")<br>
+                Executequery(Updatequery)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical, ex.Message)<br>
+            
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click<br>
+        Try<br>
+            Dim comd As New SqlCommand("select * from Results where PatientID=@id", conn)<br>
+            comd.Parameters.Add("@id", SqlDbType.Int).Value = PatientID.Text<br>
+            Dim adapter As New SqlDataAdapter(comd)<br>
+            Dim table As New DataTable()<br>
+            adapter.Fill(table)<br>
+            If table.Rows.Count > 0 Then<br>
+                firname.Text = table.Rows(0)(2).ToString()<br>
+                secname.Text = table.Rows(0)(3).ToString()<br>
+                diastolic.Text = table.Rows(0)(4).ToString()<br>
+                systolic.Text = table.Rows(0)(5).ToString()<br>
+                heigh.Text = table.Rows(0)(6).ToString()<br>
+                weight.Text = table.Rows(0)(7).ToString()<br>
+                bmi.Text = table.Rows(0)(8).ToString()<br>
+                bp.Text = table.Rows(0)(9).ToString()<br>
+                testfor.Text = table.Rows(0)(10).ToString()<br>
+                results.Text = table.Rows(0)(11).ToString()<br>
+                status.Text = table.Rows(0)(12).ToString()<br>
+            Else<br>
+                MsgBox("No data found")<br>
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox(ex.Message)<br>
+        End Try<br>
+
+    End Sub<br><br>
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click<br>
+        Try<br>
+            If testfor.Text = Nothing Then<br>
+                MsgBox("Please select the test", MsgBoxStyle.Critical)<br>
+            Else<br>
+                Dim Updatequery As String = ("UPDATE Results SET Test='" & testfor.Text & "' ,Results='" & results.Text & "' ,Status='" & status.SelectedItem & "' WHERE PatientID='" & PatientID.Text & "'")<br>
+                Executequery(Updatequery)<br>
+                MsgBox("success", MsgBoxStyle.Information)<br>
+                
+                
+            End If<br>
+        Catch ex As Exception<br>
+            MsgBox("failed", MsgBoxStyle.Critical, ex.Message)<br>
+            
+        End Try<br>
+    End Sub<br><br>
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click<br>
+        diastolic.Clear()<br>
+        systolic.Clear()<br>
+        heigh.Clear()<br>
+        weight.Clear()<br>
+        bmi.Clear()<br>
+        bp.Clear()<br>
+        testfor.Clear()<br>
+        results.Clear()<br>
+        PatientID.Clear()<br>
+        firname.Clear()<br>
+        secname.Clear()<br>
+    End Sub<br><br>
+End Class</p>
+  
+</div>	<br><hr><br>
+ 
+<a href="#"><button style="background-color: blue;font-size: 15px;"><h3>Back To Top</h3></button></a>
+<!-- END MAIN --><br><br><div >&copy; 2019</div>
+</div>
+
+</body>
+</html>
